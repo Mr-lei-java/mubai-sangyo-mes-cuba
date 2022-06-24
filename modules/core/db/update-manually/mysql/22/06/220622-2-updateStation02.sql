@@ -1,0 +1,1 @@
+create unique index IDX_SANGYO_STATION_UNIQ_NAME on SANGYO_STATION (NAME) ;

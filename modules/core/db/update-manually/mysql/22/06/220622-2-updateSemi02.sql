@@ -1,0 +1,2 @@
+alter table SANGYO_SEMI add constraint FK_SANGYO_SEMI_ON_SCREEN_ID foreign key (SCREEN_ID_ID) references SANGYO_SCREEN(ID);
+create index IDX_SANGYO_SEMI_ON_SCREEN_ID on SANGYO_SEMI (SCREEN_ID_ID);

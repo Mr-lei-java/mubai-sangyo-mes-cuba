@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="mubai-sangyo-mes-cuba" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.sangyo.entity.basic.Customer</class>
+        <class>com.company.sangyo.entity.basic.CustomerAndcustomerDescriptiveParameters</class>
+        <class>com.company.sangyo.entity.basic.CustomerDescriptiveParameters</class>
+        <class>com.company.sangyo.entity.basic.CustomerPartNumber</class>
+        <class>com.company.sangyo.entity.basic.CustomerPartNumberAndinPlantPartNumber</class>
+        <class>com.company.sangyo.entity.basic.InPlantPartNumber</class>
+        <class>com.company.sangyo.entity.basic.InPlantPartNumberAndPartNumberParameters</class>
+        <class>com.company.sangyo.entity.basic.PartNumberParameters</class>
+        <class>com.company.sangyo.entity.basic.QtExportRuleItem</class>
+        <class>com.company.sangyo.entity.basic.QtExportRules</class>
+        <class>com.company.sangyo.entity.basic.QtExportRuleItemAndPartNumberParameters</class>
+        <class>com.company.sangyo.entity.basic.Procedure</class>
+        <class>com.company.sangyo.entity.basic.StationAndProcedure</class>
+        <class>com.company.sangyo.entity.basic.Station</class>
+        <class>com.company.sangyo.entity.basic.Workshop</class>
+        <class>com.company.sangyo.entity.basic.StationAndUser</class>
+        <class>com.company.sangyo.entity.basic.OperationInstruction</class>
+        <class>com.company.sangyo.entity.basic.ProcessParameters</class>
+        <class>com.company.sangyo.entity.basic.GroupValueVerification</class>
+        <class>com.company.sangyo.entity.basic.OrderAllocationRules</class>
+        <class>com.company.sangyo.entity.basic.OrderAllocationRuleItem</class>
+        <class>com.company.sangyo.entity.basic.ProcessFlow</class>
+        <class>com.company.sangyo.entity.storage.Warehouse</class>
+        <class>com.company.sangyo.entity.basic.ProcessFlowDetailsAndProcedure</class>
+        <class>com.company.sangyo.entity.basic.ProcessFlowId</class>
+        <class>com.company.sangyo.entity.basic.LabelTemplate</class>
+        <class>com.company.sangyo.entity.basic.MaterialParameters</class>
+        <class>com.company.sangyo.entity.basic.UploadParameters</class>
+        <class>com.company.sangyo.entity.basic.SOPManagement</class>
+        <class>com.company.sangyo.entity.production.WorkOrder</class>
+        <class>com.company.sangyo.entity.order.Order</class>
+        <class>com.company.sangyo.entity.order.PartNumberOrder</class>
+        <class>com.company.sangyo.entity.order.OrderAndCustomerPartNumber</class>
+        <class>com.company.sangyo.entity.order.StockOrder</class>
+        <class>com.company.sangyo.entity.production.WorkOrderAndScreen</class>
+        <class>com.company.sangyo.entity.basic.Screen</class>
+        <class>com.company.sangyo.entity.basic.CustomerPartNumberAndPartNumberParameters</class>
+        <class>com.company.sangyo.entity.basic.EntryAndExitVerificationRuleItem</class>
+        <class>com.company.sangyo.entity.basic.InboundAndOutboundCalibrationRules</class>
+        <class>com.company.sangyo.entity.basic.ErpSynchronousRecord</class>
+        <class>com.company.sangyo.entity.basic.ItemNumberParameterTemplate</class>
+        <class>com.company.sangyo.entity.basic.ItemNumberTemplate</class>
+        <class>com.company.sangyo.entity.basic.StandingTimeCheck</class>
+        <class>com.company.sangyo.entity.production.DispatchList</class>
+        <class>com.company.sangyo.entity.production.DispatchListAndScreen</class>
+        <class>com.company.sangyo.entity.production.FactoryProductionStandardsEntity</class>
+        <class>com.company.sangyo.entity.production.ProductionRecords</class>
+        <class>com.company.sangyo.entity.storage.QualityTraceability</class>
+        <class>com.company.sangyo.entity.production.IssueKanban</class>
+        <class>com.company.sangyo.entity.production.IssueKanbanAndDispatchList</class>
+        <class>com.company.sangyo.entity.storage.Finished</class>
+        <class>com.company.sangyo.entity.storage.InventoryCheck</class>
+        <class>com.company.sangyo.entity.storage.InventoryRecording</class>
+        <class>com.company.sangyo.entity.storage.InventoryStationEntity</class>
+        <class>com.company.sangyo.entity.storage.InventoryStationRecordingEntity</class>
+        <class>com.company.sangyo.entity.storage.Raw</class>
+        <class>com.company.sangyo.entity.storage.ReworkRecord</class>
+        <class>com.company.sangyo.entity.storage.ScrapRecord</class>
+        <class>com.company.sangyo.entity.storage.Semi</class>
+        <class>com.company.sangyo.entity.storage.Unqualified</class>
+    </persistence-unit>
+</persistence>

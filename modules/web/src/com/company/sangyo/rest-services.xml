@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://schemas.haulmont.com/cuba/rest-services-v2.xsd">
+<!--    <service name="sangyo_ScreenService">-->
+<!--        <method name="generateCode">-->
+<!--            <param name="frame"/>-->
+<!--        </method>-->
+<!--    </service>-->
+
+<!--    <service name="sangyo_OperatingService">-->
+<!--        &lt;!&ndash;        查询用户的所有工位&ndash;&gt;-->
+<!--        <method name="getAllWorkstationByStaffId">-->
+<!--            &lt;!&ndash;            staffId :100002&ndash;&gt;-->
+<!--            <param name="staffId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        根据工位id以及派工单状态查询对应的派工单&ndash;&gt;-->
+<!--        <method name="getAllWorkingorderByWorkstationId">-->
+<!--            &lt;!&ndash;            workstationId:30000002,（工位id）&ndash;&gt;-->
+<!--            <param name="workstationId"/>-->
+<!--            &lt;!&ndash;            workingOrderStatus :"全部",（派工单状态：全部、未完成、已完成）&ndash;&gt;-->
+<!--            <param name="workingOrderStatus"/>-->
+<!--            <param name="page"/>-->
+<!--            <param name="limit"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        查询用户是否存在&ndash;&gt;-->
+<!--        <method name="getStaffByUsername">-->
+<!--            &lt;!&ndash;            username:用户&ndash;&gt;-->
+<!--            <param name="username"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        根据派工单id查询信息&ndash;&gt;-->
+<!--        <method name="getWorkingorderById">-->
+<!--            &lt;!&ndash;            workingOrderId :160000002（派工单id）&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        查询派工单所有的上传参数&ndash;&gt;-->
+<!--        <method name="getProcedureAllParamByWorkingOrderId">-->
+<!--            &lt;!&ndash;            workingOrderId :160000002（派工单id）&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;       根据派工单id获取其所有的下发参数以及参数值 &ndash;&gt;-->
+<!--        <method name="getProcedureMaterielParamRelsByWorkingorderId">-->
+<!--            &lt;!&ndash;            workingOrderId :160000002（派工单id）&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        查询派工单下所有的网版信息&ndash;&gt;-->
+<!--        <method name="getAllScreenFramesByWorkingOrderId">-->
+<!--            &lt;!&ndash;            workingOrderId :160000002（派工单id）&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;       网版 派工单进站&ndash;&gt;-->
+<!--        <method name="workingorderInStation">-->
+<!--            &lt;!&ndash;            workingOrderId :160000002,（派工单id）&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--            &lt;!&ndash;            screenFrameStr :"190929001004",（边框编号）&ndash;&gt;-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            &lt;!&ndash;            creator        :"admin"（创建人）&ndash;&gt;-->
+<!--            <param name="creator"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        清除派工单中进站数据重复的网版&ndash;&gt;-->
+<!--        <method name="clearWorkingOrderRepeatSc">-->
+<!--            &lt;!&ndash;            workingOrderId :160018464&ndash;&gt;-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            &lt;!&ndash;            screenFrameStr :200109095&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        派工单出站&ndash;&gt;-->
+<!--        <method name="workingorderOutStation">-->
+<!--            &lt;!&ndash;            creator          :"admin",（创建人）&ndash;&gt;-->
+<!--            <param name="creator"/>-->
+<!--            &lt;!&ndash;            paramValues      :"190929001004-120000004-参数值D,-->
+<!--     *                         190929001004-120000005-参数值E,-->
+<!--     *                         190929001005-120000004-参数值D,-->
+<!--     *                         190929001005-120000005-参数值E",-->
+<!--     *                         （网框参数值，拼接方式为：网框编号-procedureParamId-参数值,-->
+<!--     *                         网框编号-procedureParamId-参数值,...）（如果参数值为文件类型，则此处的参数值为上传文件返回的文件id）&ndash;&gt;-->
+<!--            <param name="paramValues"/>-->
+<!--            &lt;!&ndash;            outStationStatus :"正常出站",&ndash;&gt;-->
+<!--            <param name="outStationStatus"/>-->
+<!--            &lt;!&ndash;            workingOrderId   :160000003（派工单id）&ndash;&gt;-->
+<!--            <param name="workingOrderId"/>-->
+<!--            &lt;!&ndash;            remark           :""（备注）&ndash;&gt;-->
+<!--            <param name="remark"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;       网框扫码，得到对应的派工单 &ndash;&gt;-->
+<!--        <method name="getWorkingorderByScreenFrameStr">-->
+<!--            &lt;!&ndash;           screenFrameStr :"191028045",（网版编号） &ndash;&gt;-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            &lt;!&ndash;           workstationId  :30000022（工位id） &ndash;&gt;-->
+<!--            <param name="workstationId"/>-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        根据网版编号查询其上传参数的录入数据&ndash;&gt;-->
+<!--        <method name="getAllProcessDataByScreenFrameStr">-->
+<!--            &lt;!&ndash;            screenFrameStr :"190929001005"（网版编号）&ndash;&gt;-->
+<!--            <param name="screenFrameStr"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        查询用户权限&ndash;&gt;-->
+<!--        <method name="getAllSpermissionByUsername">-->
+<!--            &lt;!&ndash;       username 用户名&ndash;&gt;-->
+<!--            <param name="username"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        不合格品列表&ndash;&gt;-->
+<!--        <method name="getAllDpwByStaffIdAndDpwStatus">-->
+<!--            &lt;!&ndash;          staffId   :100001,（用户id）&ndash;&gt;-->
+<!--            <param name="staffId"/>-->
+<!--            &lt;!&ndash;           dpwStatus :"",（不合格品状态，""表示全部，"未完成"，"已完成"）&ndash;&gt;-->
+<!--            <param name="dpwStatus"/>-->
+<!--            &lt;!&ndash;           page      :1,&ndash;&gt;-->
+<!--            <param name="page"/>-->
+<!--            &lt;!&ndash;           limit     :5,&ndash;&gt;-->
+<!--            <param name="limit"/>-->
+<!--            &lt;!&ndash;           keyword   :""（搜索关键字：网版编号）&ndash;&gt;-->
+<!--            <param name="keyword"/>-->
+
+<!--        </method>-->
+<!--        &lt;!&ndash;        处理次品网框:报废、返工、正常流转&ndash;&gt;-->
+<!--        <method name="putDefectiveProductsResolve">-->
+<!--            &lt;!&ndash;            screenFrameStr :"",（网版编号）&ndash;&gt;-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            &lt;!&ndash;            checkResult    :"",（检查结果：返工、报废、正常流转）&ndash;&gt;-->
+<!--            <param name="checkResult"/>-->
+<!--            &lt;!&ndash;            reProcedureId  :90000001,（返工工序id）&ndash;&gt;-->
+<!--            <param name="reProcedureId"/>-->
+<!--            &lt;!&ndash;            creator        :"admin",（创建人）&ndash;&gt;-->
+<!--            <param name="creator"/>-->
+<!--            &lt;!&ndash;            resolveRemark  :""（处理备注）&ndash;&gt;-->
+<!--            <param name="resolveRemark"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        查询网框已经操作的工序列表&ndash;&gt;-->
+<!--        <method name="getProcedureDoneByScreenFrameStr">-->
+<!--            &lt;!&ndash;            screenFrameStr :"191121415"（网版编号）&ndash;&gt;-->
+<!--            <param name="screenFrameStr"/>-->
+<!--        </method>-->
+<!--        <method name="getSteelWireGauzeSpecByScreenFrameStr">-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            <param name="workingOrderId"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        图片七天内删除&ndash;&gt;-->
+<!--        <method name="deleteFileDescriptor"/>-->
+
+<!--        &lt;!&ndash;        判断是否网版过了静置时间&ndash;&gt;-->
+<!--        <method name="checkTime">-->
+<!--            <param name="standingTime"/>-->
+<!--            <param name="date"/>-->
+<!--            <param name="outboundTime"/>-->
+<!--        </method>-->
+<!--    </service>-->
+
+<!--    <service name="sangyo_OrderService">-->
+<!--        &lt;!&ndash;通过厂内订单号查询&ndash;&gt;-->
+<!--        <method name="getAllCusMnByOrderId">-->
+<!--            <param name="orderId"/>-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        订单下发&ndash;&gt;-->
+<!--        <method name="distributeOrder">-->
+<!--            <param name="orderId"/>-->
+<!--            <param name="list"/>-->
+<!--            <param name="userName"/>-->
+<!--        </method>-->
+
+<!--        <method name="getAllOrder">-->
+<!--            <param name="page"/>-->
+<!--            <param name="limit"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        厂内料号详情&ndash;&gt;-->
+<!--        <method name="getInPlantPartNumber">-->
+<!--            <param name="inPlantPartNumber"/>-->
+<!--        </method>-->
+
+
+<!--        &lt;!&ndash;        客户料号详情&ndash;&gt;-->
+<!--        <method name="getCustomerPartNumber">-->
+<!--            <param name="customerPartNumber"/>-->
+<!--        </method>-->
+
+<!--    </service>-->
+<!--    <service name="sangyo_DispatchListService">-->
+<!--        &lt;!&ndash;        feat：增加自动关闭派工单功能&ndash;&gt;-->
+<!--        <method name="closeDispatchListRepositoryList">-->
+<!--        </method>-->
+<!--    </service>-->
+<!--    <service name="sangyo_InventoryStationService">-->
+<!--        &lt;!&ndash;        盘点获取网版信息&ndash;&gt;-->
+<!--        <method name="getProcedureScreen">-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            <param name="procedure"/>-->
+<!--            <param name="user"/>-->
+<!--            <param name="inventoryStationRecordingId"/>-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        待盘点数量&ndash;&gt;-->
+<!--        <method name="getProcedureInventoryStationRecording">-->
+<!--            <param name="user"/>-->
+<!--            <param name="procedureId"/>-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        结束盘点&ndash;&gt;-->
+<!--        <method name="updateProcedureInventoryRecording">-->
+<!--            <param name="inventoryStationRecordingId"/>-->
+<!--        </method>-->
+<!--    </service>-->
+
+<!--    <service name="sangyo_InventoryCheckService">-->
+<!--        &lt;!&ndash;        盘点获取库名&ndash;&gt;-->
+<!--        <method name="getInventory">-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        盘点获取网版信息&ndash;&gt;-->
+<!--        <method name="getInventoryScreen">-->
+<!--            <param name="screenFrameStr"/>-->
+<!--            <param name="warehouse"/>-->
+<!--            <param name="user"/>-->
+<!--            <param name="inventoryRecording"/>-->
+<!--        </method>-->
+
+<!--        &lt;!&ndash;        待盘点数量&ndash;&gt;-->
+<!--        <method name="inventoryQuantity">-->
+<!--            <param name="type"/>-->
+<!--            <param name="user"/>-->
+<!--            <param name="warehouse"/>-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        结束盘点&ndash;&gt;-->
+<!--        <method name="updateInventoryRecording">-->
+<!--            <param name="inventoryRecording"/>-->
+<!--        </method>-->
+<!--    </service>-->
+<!--    &lt;!&ndash;    看板显示&ndash;&gt;-->
+<!--    <service name="sangyo_IssueKanbanService">-->
+<!--        &lt;!&ndash;        获取工序&ndash;&gt;-->
+<!--        <method name="getProcedure"/>-->
+<!--        &lt;!&ndash;            用工序获取下发派工单&ndash;&gt;-->
+<!--        <method name="getIssueKanban">-->
+<!--            <param name="procedure"/>-->
+<!--        </method>-->
+
+<!--        <method name="outUpdateIssueKanban">-->
+<!--            <param name="dispatchList"/>-->
+<!--            <param name="normalScreen"/>-->
+<!--        </method>-->
+
+<!--        <method name="closeIssueKanbanAndDispatchList">-->
+<!--        </method>-->
+<!--    </service>-->
+
+<!--    <service name="sangyo_ProcessFlowService">-->
+<!--        &lt;!&ndash;        获取工序&ndash;&gt;-->
+<!--        <method name="getProcedures"/>-->
+<!--        &lt;!&ndash;写入工艺流程&ndash;&gt;-->
+<!--        <method name="setProcessFlow">-->
+<!--            <param name="processFlow"/>-->
+<!--            <param name="procedures"/>-->
+<!--            <param name="deleteProcedure"/>-->
+<!--        </method>-->
+<!--        &lt;!&ndash;        获取工艺流程&ndash;&gt;-->
+<!--        <method name="getProcessFlow">-->
+<!--            <param name="processFlow"/>-->
+<!--        </method>-->
+
+<!--    </service>-->
+
+<!--    <service name="sangyo_ERPService">-->
+<!--        &lt;!&ndash;        <method name="getCustDoc">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <param name="pageNum">&ndash;&gt;-->
+<!--        &lt;!&ndash;        </method>&ndash;&gt;-->
+<!--    </service>-->
+
+<!--    <service name="sangyo_TestService">-->
+<!--        <method name="test">-->
+<!--            <param name="param"/>-->
+<!--        </method>-->
+<!--    </service>-->
+</services>
+

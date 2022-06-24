@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.company.sangyo"/>
+    
+    <gui:screens base-packages="com.company.sangyo.web"/>
+    <bean id="sangyo_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="sangyo_AccessTokenService" value="com.company.sangyo.core.AccessTokenService"/>
+                <entry key="sangyo_CRUDDemoService" value="com.company.sangyo.core.CRUDDemoService"/>
+                <entry key="sangyo_NativeQueryService" value="com.company.sangyo.core.NativeQueryService"/>
+                <entry key="sangyo_QtExportService" value="com.company.sangyo.core.QtExportService"/>
+                <entry key="sangyo_QualityTraceabilityService"
+                       value="com.company.sangyo.core.production.QualityTraceabilityService"/>
+                <entry key="sangyo_ReworkService" value="com.company.sangyo.core.production.ReworkService"/>
+                <entry key="sangyo_WorkOrderService" value="com.company.sangyo.core.production.WorkOrderService"/>
+                <entry key="sangyo_DispatchListService" value="com.company.sangyo.core.production.DispatchListService"/>
+                <entry key="sangyo_OrderService" value="com.company.sangyo.core.order.OrderService"/>
+                <entry key="sangyo_QualifiedRateService" value="com.company.sangyo.core.kanban.QualifiedRateService"/>
+                <entry key="sangyo_UnqualifiedService" value="com.company.sangyo.core.storage.UnqualifiedService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

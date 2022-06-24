@@ -1,0 +1,205 @@
+
+buildscript {
+    ext.cubaVersion = '7.2.19'
+    repositories {
+        maven {
+            url 'https://nexus.cuba-platform.cn/repository/cuba/'
+            
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        
+    }
+    dependencies {
+        classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
+    }
+}
+
+def modulePrefix = 'app'
+
+def globalModule = project(":${modulePrefix}-global")
+def coreModule = project(":${modulePrefix}-core")
+def webModule = project(":${modulePrefix}-web")
+def guiModule = project(":${modulePrefix}-gui")
+
+def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
+
+apply(plugin: 'cuba')
+
+cuba {
+    artifact {
+        group = 'com.company.sangyo'
+        version = '0.1'
+        isSnapshot = true
+    }
+}
+
+dependencies {
+    appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
+    appComponent('de.diedavids.cuba.dataimport:dataimport-global:0.14.1')
+    appComponent('com.haulmont.addon.helium:helium-global:0.3.1')
+    appComponent('com.haulmont.addon.dashboard:dashboard-global:3.2.3')
+    appComponent("com.haulmont.charts:charts-global:$cubaVersion")
+    appComponent('com.haulmont.addon.globalevents:cubaglevt-global:0.6.1')
+    appComponent('com.haulmont.addon.restapi:restapi-global:7.2.3')
+}
+
+def mysql = 'mysql:mysql-connector-java:8.0.15'
+
+configure([globalModule, coreModule, webModule, guiModule]) {
+    apply(plugin: 'java')
+    apply(plugin: 'maven')
+    apply(plugin: 'cuba')
+
+    dependencies {
+            testCompile('org.junit.jupiter:junit-jupiter-api:5.5.2')
+            testCompile('org.junit.jupiter:junit-jupiter-engine:5.5.2')
+            testCompile('org.junit.vintage:junit-vintage-engine:5.5.2')  
+        }
+
+    task sourceJar(type: Jar) {
+        from file('src')
+        classifier = 'sources'
+    }
+
+    artifacts {
+        archives sourceJar
+    } 
+    test {
+        useJUnitPlatform()
+    }
+}
+
+
+configure(globalModule) {
+    dependencies {
+        if (!JavaVersion.current().isJava8()) {
+            runtime('javax.xml.bind:jaxb-api:2.3.1')
+            runtime('org.glassfish.jaxb:jaxb-runtime:2.3.1')
+        }
+        compile('io.netty:netty-buffer:4.1.32.Final')
+        compile('io.netty:netty-codec:4.1.32.Final')
+        compile('io.netty:netty-handler:4.1.32.Final')
+        compile('com.alibaba:fastjson:1.2.75')
+        compile('com.fundebug:fundebug-spring:0.3.1')
+    }
+
+    entitiesEnhancing {
+        main {
+            enabled = true
+        }
+    }
+}
+
+configure(coreModule) {
+
+    configurations {
+        jdbc
+        dbscripts
+    }
+
+    dependencies {
+        compile(globalModule)
+        compileOnly(servletApi)
+        jdbc(mysql)
+        testRuntime(mysql)
+        compile('com.alibaba:easyexcel:2.2.6')
+        compile('org.springframework.data:spring-data-jpa:1.11.13.RELEASE') {
+            exclude(group: 'org.hibernate', module: 'hibernate-core')
+            exclude(group: 'org.springframework', module: 'spring-context')
+            exclude(group: 'org.springframework', module: 'spring-core')
+            exclude(group: 'org.springframework', module: 'spring-beans')
+            exclude(group: 'org.springframework', module: 'spring-tx')
+            exclude(group: 'org.springframework', module: 'spring-orm')
+            exclude(group: 'org.springframework', module: 'spring-aop')
+            exclude(group: 'org.springframework', module: 'spring-expression')
+        }
+    }
+
+    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
+        delete "$cuba.appHome/${modulePrefix}-core/conf"
+    }
+
+    task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
+        appName = "${modulePrefix}-core"
+        appJars(modulePrefix + '-global', modulePrefix + '-core')
+    }
+
+    task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
+    }
+
+    task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
+    }
+}
+
+configure(guiModule) {
+    dependencies {
+        compile(globalModule)
+    }
+
+    task deployConf(type: Copy) {
+        from file('src')
+        include "com/company/sangyo/**"
+        into "$cuba.tomcat.dir/conf/${modulePrefix}"
+    }
+}
+
+configure(webModule) {
+    configurations {
+        webcontent
+    }
+
+    dependencies {
+        compileOnly(servletApi)
+        compile(guiModule)
+    }
+
+    task webArchive(type: Zip) {
+        from file("$buildDir/web")
+        from file('web')
+        classifier = 'web'
+    }
+
+    artifacts {
+        archives webArchive
+    }
+
+    task deployConf(type: Copy) {
+        from file('src')
+        include "com/company/sangyo/**"
+        into "$cuba.appHome/${modulePrefix}/conf"
+    }
+
+    task clearMessagesCache(type: CubaClearMessagesCache) {
+        appName = "${modulePrefix}"
+    }
+    deployConf.dependsOn clearMessagesCache
+
+    task cleanConf(description: 'Cleans up conf directory', type: Delete) {
+        delete "$cuba.appHome/${modulePrefix}/conf"
+    }
+
+    task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
+        appName = "${modulePrefix}"
+        appJars(modulePrefix + '-global', modulePrefix + '-gui', modulePrefix + '-web')
+    }
+}
+
+task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
+    delete("$cuba.tomcat.dir/shared")
+    delete("$cuba.tomcat.dir/webapps/${modulePrefix}-core")
+    delete("$cuba.tomcat.dir/webapps/${modulePrefix}")
+}
+
+task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefix}-web:deploy"], description: 'Redeploys applications and restarts local Tomcat') {
+    doLast {
+        ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
+            not {
+                socket(server: 'localhost', port: '8787')
+            }
+        }
+    }
+}
+restart.finalizedBy start
+

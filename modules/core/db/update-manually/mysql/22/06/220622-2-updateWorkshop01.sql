@@ -1,0 +1,1 @@
+create unique index IDX_SANGYO_WORKSHOP_UNIQ_NAME on SANGYO_WORKSHOP (NAME) ;
